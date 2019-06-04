@@ -1,0 +1,19 @@
+python ./Scripts/pix2pix_0.py --mode train  --output_dir ./Models/Model_orig_0_ST_T1  --input_dir ./512_Combined_Augmented/ST/T1/Train --which_direction AtoB --max_epochs 2 --batch_size 2 --seed 1 --l1_weight 10
+python ./Scripts/pix2pix_0.py --mode test --output_dir ./Results/Model_orig_0_ST_T1 --checkpoint ./Models/Model_orig_0_ST_T1 --input_dir ./512_Combined_Augmented/ST/T1/Test 
+
+python ./Scripts/pix2pix_0.py --mode train  --output_dir ./Models/Model_orig_0_ST_T2  --input_dir ./512_Combined_Augmented/ST/T2/Train --which_direction AtoB --max_epochs 2 --batch_size 2 --seed 1 --l1_weight 10
+python ./Scripts/pix2pix_0.py --mode test --output_dir ./Results/Model_orig_0_ST_T2 --checkpoint ./Models/Model_orig_0_ST_T2 --input_dir ./512_Combined_Augmented/ST/T2/Test 
+
+python ./Scripts/pix2pix_3_dG.py --mode train  --output_dir ./Models/Model_orig_3_ST_T1  --input_dir ./512_Combined_Augmented/ST/T1/Train --which_direction AtoB --max_epochs 2 --batch_size 2 --seed 1 --l1_weight 10
+python ./Scripts/pix2pix_3_dG.py --mode test --output_dir ./Results/Model_orig_3_ST_T1 --checkpoint ./Models/Model_orig_3_ST_T1 --input_dir ./512_Combined_Augmented/ST/T1/Test 
+
+python ./Scripts/pix2pix_3_dG.py --mode train  --output_dir ./Models/Model_orig_3_ST_T2  --input_dir ./512_Combined_Augmented/ST/T2/Train --which_direction AtoB --max_epochs 2 --batch_size 2 --seed 1 --l1_weight 10
+python ./Scripts/pix2pix_3_dG.py --mode test --output_dir ./Results/Model_orig_3_ST_T2 --checkpoint ./Models/Model_orig_3_ST_T2 --input_dir ./512_Combined_Augmented/ST/T2/Test 
+
+
+
+python ./Scripts/pix2pix_0_MT.py --mode train  --output_dir ./Models/Model_orig_0_MT_A1  --input_dir ./512_Combined_Augmented/MT/Train --which_direction AtoB --max_epochs 2 --batch_size 2 --seed 1 --l1_weight 10
+python ./Scripts/pix2pix_0_MT.py --mode test --output_dir ./Results/Model_orig_0_MT_A1 --checkpoint ./Models/Model_orig_0_MT_A1 --input_dir ./512_Combined_Augmented/MT/Test 
+
+python ./Scripts/pix2pix_3_MTdG.py --mode train  --output_dir ./Models/Model_orig_3_MT_A1_1  --input_dir ./512_Combined_Augmented/MT/Train --which_direction AtoB --max_epochs 2 --batch_size 2 --seed 1 --l1_weight 10
+python ./Scripts/pix2pix_3_MTdG.py --mode test --output_dir ./Results/Model_orig_3_MT_A1_1 --checkpoint ./Models/Model_orig_3_MT_A1_1 --input_dir ./512_Combined_Augmented/MT/Test 
