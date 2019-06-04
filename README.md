@@ -9,7 +9,6 @@ The codes are based on codes of pix2pix shared by https://github.com/affinelayer
 This concept and code is used in the following research:
 https://youtu.be/J8Uth26_7rQ
 
-
 which you can find more information:
 
 
