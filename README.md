@@ -1,4 +1,4 @@
-# Image to images translation
+# Image-to-images translation
 # Multi-task pix2pix
 
 This repository contains the codes and example images/folders for image-to-images translation. <br>
