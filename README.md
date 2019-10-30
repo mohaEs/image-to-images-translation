@@ -15,6 +15,8 @@ https://arxiv.org/abs/1906.10089
 
 If you found this codes usefull, please cite the above paper.
 
+The codes are tested by python 3.5, 3.6 and tensorflow 1.12, 1.13 and 1.14.
+
 
 ## Main scripts
 Main scripts are as follow (512x512 image size):
