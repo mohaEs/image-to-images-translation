@@ -62,9 +62,9 @@ For the mentioned research following datasets were used:
 - Bone suppression: https://www.kaggle.com/hmchuong/xray-bone-shadow-supression
 
 
-## cross validation setting
+## Cross validation setting
 
-The names of image files which will be used for training/testing are deteremined by the train.txt and test.txt files which will be located in a folder and assigned to the cv_info_dir argument. Following image shows and example:
+The names of image files which will be used for training/testing are deteremined by the train.txt and test.txt files which will be located in a folder and assigned to the cv_info_dir argument. Following image shows an example for 2 folds set_1 and set_2:
 
 ![Alt text](./readme_2.jpg?raw=true "Title") <br>
 
