@@ -28,7 +28,7 @@ Main scripts located in scripts folder are as follow (512x512 image size):
 - pix2pix_MTdG_cv.py : Mutlit-task pix2pix with dilation at stages 2 till 7 of the encoder of the generator network
 
 All the scripts can be called by the arguments: <br>
---output_dir_all   path/to/dir/for/saving/outputs  <br>
+--output_dir_all            path/to/dir/for/saving/outputs  <br>
 --input_dir_all   path/to/dir/images  <br>
 --cv_info_dir  path/to/dir/cv/setups  <br>
 --task_No   number indicating tasks: 1 and 2 for single tasks, 3 for multi-task <br>
