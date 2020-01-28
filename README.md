@@ -76,16 +76,16 @@ Notice that, if the folder contains previous saved models, the code will continu
 
 
 ### Single task - task 1:
-python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### Single task - task 2:
-python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### Single task with dilation - task 1:
-python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### Single task with dilation- task 2:
-python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### multi task:
-python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### multi task with dilation:
-python ./Scripts/pix2pix_MTdG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_MTdG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 
 
