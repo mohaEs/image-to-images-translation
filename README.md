@@ -57,5 +57,35 @@ All the input images including, input, targets of tasks 1 and 2 should be placed
 
 ![Alt text](./readme.jpg?raw=true "Title") <br>
 
+For the mentioned research following datasets were used:
+- Segmentation: https://www.isi.uu.nl/Research/Databases/SCR/
+- Bone suppression: https://www.kaggle.com/hmchuong/xray-bone-shadow-supression
+
+
+## cross validation setting
+
+The names of image files which will be used for training/testing are deteremined by the train.txt and test.txt files which will be located in a folder and assigned to the cv_info_dir argument. Following image shows and example:
+
+![Alt text](./readme_2.jpg?raw=true "Title") <br>
+
+## Executing
+
+Do not forget tp set the values of batch size and epochs appropriatley.<br>
+With following command shells, the models  and results will be saved in output_dir_all folder.<br>
+Notice that, if the folder contains previous saved models, the code will continue training. 
+
+
+### Single task - task 1 - pix2pix:
+python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+### Single task - task 2 - pix2pix:
+python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+### Single task with dilation - task 1 - pix2pix:
+python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+### Single task with dilation- task 2 - pix2pix:
+python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+### multi task - pix2pix:
+python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+### multi task with dilation - pix2pix:
+python ./Scripts/pix2pix_MTdG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 
 
