@@ -55,7 +55,7 @@ Now, we show more examples as follow.
 
 All the input images including, input, targets of tasks 1 and 2 should be placed in a folder and assigned to the input_dir_all arguments. Following image shows an example of the input folder:
 
-![Alt text](./readme?raw=true "Title") <br>
+![Alt text](./readme.jpg?raw=true "Title") <br>
 
 
 
