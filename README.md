@@ -38,5 +38,24 @@ All the scripts can be called by the arguments: <br>
 --seed   &nbsp; &nbsp;   1 <br>
 --l1_weight  &nbsp; &nbsp;  weight for l1 part in loss function <br>
 
+e.g. 
+for training with cross validation, single task, task 1, ... : <br>
+> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10  
+
+and for multi-task: <br>
+> python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+
+
+The codes are tested by tensorflow-gpu 1.12.0 and python 3.6.6
+
+
+Now, we show more examples as follow.
+
+## Data
+
+All the input images including, input, targets of tasks 1 and 2 should be placed in a folder and assigned to the input_dir_all arguments. Following image shows an example of the input folder:
+
+![Alt text](./readme?raw=true "Title") <br>
+
 
 
