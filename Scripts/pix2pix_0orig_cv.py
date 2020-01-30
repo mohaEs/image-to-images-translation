@@ -877,7 +877,7 @@ def CombineImages(ImageListNames, task_No, input_dir_all):
                 
     
         
-        misc.imsave(write_to_dir+filename, Image_combined)
+        io.imsave(write_to_dir+filename, Image_combined)
 
 
 from skimage import io
