@@ -89,3 +89,12 @@ Notice that, if the folder contains previous saved models, the code will continu
 > python ./Scripts/pix2pix_MTdG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 
 
+## Training Note: Loss curves
+
+Always follow the loss values which are reported in the terminal to make sure that the GAN network works well.
+for example, following image shows a training case, in which generator successfully fooled the discrimantor:<br>
+![Alt text](./Scripts/Converged.png?raw=true "Title") <br>
+While the following case study shows that the discriminator is the winner around 200th epoch. Also, the problems was so complicated than previous case study in which the system converged easily. Here there are many struggles even before epoch 200:<br>
+![Alt text](./Scripts/Misconverged.png?raw=true "Title") <br>
+
+It means, we should change the hyperparameters, e.g. setting the max_epochs to 180, desired l1 loss, l1 wieght, etc.  
