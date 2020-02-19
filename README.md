@@ -31,7 +31,7 @@ All the scripts can be called by the arguments: <br>
 --output_dir_all    &nbsp;  &nbsp;      path/to/dir/for/saving/outputs  <br>
 --input_dir_all   &nbsp; &nbsp;  path/to/dir/images  <br>
 --cv_info_dir &nbsp; &nbsp; path/to/dir/cv/setups  <br>
---task_No     &nbsp;  &nbsp; number indicating tasks: 1 and 2 for single tasks, 3 for multi-task <br>
+--task_No     &nbsp;  &nbsp; number indicating tasks: **1 and 2 for single tasks**, **3 for multi-task** <br>
 --desired_l1_loss &nbsp;  &nbsp; desired l1 loss for early stopping <br>
 --max_epochs  &nbsp; &nbsp;  maximum epochs  <br>
 --batch_size  &nbsp; &nbsp; batch size <br>
