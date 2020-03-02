@@ -904,8 +904,8 @@ def CombineImages(ImageListNames, task_No, input_dir_all):
                 Image_[:,:,2]=Image_t1
                 Image_t1=Image_
             Image_combined=np.zeros(shape=[Image.shape[0],2*Image.shape[1],3], dtype='uint8')
-            Image_combined[:,:512,:]=Image
-            Image_combined[:,512:,:]=Image_t1
+            Image_combined[:,:CROP_SIZE,:]=Image
+            Image_combined[:,CROP_SIZE:,:]=Image_t1
 
         if task_No==2:        
             Image_t2=io.imread(a.input_dir_all+'/Targets_'+str(task_No) +'/'+ filename)
@@ -917,8 +917,8 @@ def CombineImages(ImageListNames, task_No, input_dir_all):
                 Image_[:,:,2]=Image_t2
                 Image_t2=Image_ 
             Image_combined=np.zeros(shape=[Image.shape[0],2*Image.shape[1],3], dtype='uint8')
-            Image_combined[:,:512,:]=Image
-            Image_combined[:,512:,:]=Image_t2
+            Image_combined[:,:CROP_SIZE,:]=Image
+            Image_combined[:,CROP_SIZE:,:]=Image_t2
 
         if task_No==3:        
             print('3 is not acceptable for single task')
@@ -940,9 +940,9 @@ def CombineImages(ImageListNames, task_No, input_dir_all):
 #                Image_[:,:,2]=Image_t2
 #                Image_t2=Image_                                                 
 #            Image_combined=np.zeros(shape=[Image.shape[0],3*Image.shape[1],3], dtype='uint8')
-#            Image_combined[:,:512,:]=Image
-#            Image_combined[:,512:1024,:]=Image_t1            
-#            Image_combined[:,1024:,:]=Image_t2            
+#            Image_combined[:,:CROP_SIZE,:]=Image
+#            Image_combined[:,CROP_SIZE:2*CROP_SIZE,:]=Image_t1            
+#            Image_combined[:,2*CROP_SIZE:,:]=Image_t2            
                 
     
         
@@ -960,7 +960,7 @@ import sys
 #a.task_No='1'
 #a.max_epochs=2000
 #a.desired_l1_loss=0.05
-
+#a.batch_size=10
 
 CvDirs = glob.glob(os.path.join(a.cv_info_dir, "*"))
 
