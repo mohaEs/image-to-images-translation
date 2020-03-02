@@ -54,6 +54,8 @@ As stated above, the defualt image size is 512x512. if you want to change it, ju
 a.scale_size=512 <br>
 CROP_SIZE = 512
 
+Do not forget that, the size of images in the --input_dir_all directory should be consistent with CROP_SIZE. 
+
 ## using without terminal:
 
 If you want to use the scripts without terminal and arguments, there are simple assignments after the CombineImages() function which you can find them and edit them. They are disbaled as comments now. for example: <br>
