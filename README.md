@@ -56,7 +56,7 @@ CROP_SIZE = 512
 
 ## using without terminal:
 
-If you want to use the scripts without terminal and argumetns, there are simple assignments after the CombineImages() function which you can find them and edit them. They are disbaled as comments now. for example: <br>
+If you want to use the scripts without terminal and arguments, there are simple assignments after the CombineImages() function which you can find them and edit them. They are disbaled as comments now. for example: <br>
 
 #a.input_dir_all='../ImageData' <br>
 #a.cv_info_dir='../CV_info' <br>
