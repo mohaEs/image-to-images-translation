@@ -48,6 +48,22 @@ and for multi-task: <br>
 
 The codes are tested by tensorflow-gpu 1.12.0 and python 3.6.6
 
+## image size:
+As stated above, the defualt image size is 512x512. if you want to change it, just change the following lines in each script:
+
+a.scale_size=512 
+CROP_SIZE = 512
+
+## using without terminal:
+
+If you want to use the scripts without terminal and argumetns, there are simple assignments after the CombineImages() function which you can find them and edit them. They are disbaled as comments now. 
+
+#a.input_dir_all='../ImageData'
+#a.cv_info_dir='../CV_info'
+#a.output_dir_all='../Outputs'
+#a.task_No='3'
+#a.max_epochs=2000
+#a.desired_l1_loss=0.05
 
 Now, we show more examples as follow.
 
