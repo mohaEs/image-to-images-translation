@@ -961,6 +961,7 @@ import sys
 #a.max_epochs=2000
 #a.desired_l1_loss=0.05
 #a.batch_size=10
+#a.seed=1
 
 CvDirs = glob.glob(os.path.join(a.cv_info_dir, "*"))
 
