@@ -13,7 +13,8 @@ https://youtu.be/J8Uth26_7rQ <br>
 which you can find more information:
 https://arxiv.org/abs/1906.10089
 
-If you found this codes usefull, please cite the above paper.
+If you found this codes usefull, please cite the following paper:
+https://doi.org/10.1109/TMI.2020.2974159
 
 The codes are tested by python 3.5, 3.6 and tensorflow 1.12, 1.13 and 1.14.
 
