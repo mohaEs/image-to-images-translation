@@ -16,7 +16,8 @@ https://arxiv.org/abs/1906.10089
 If you found this codes usefull, please cite the following paper:
 https://doi.org/10.1109/TMI.2020.2974159
 
-The codes are tested by python 3.5, 3.6 and tensorflow 1.12, 1.13 and 1.14.
+The codes are tested by python 3.5, 3.6 and tensorflow 1.12, 1.13 and 1.14. 
+If the training stopped with no error or message, use the tensorflow version 1.12. 
 
 This is the version v2, which makes the cross validation automatically. The v1 is also available and located in the folder v1.
 
