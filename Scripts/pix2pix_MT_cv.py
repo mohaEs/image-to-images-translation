@@ -894,13 +894,13 @@ def main():
 
         if a.checkpoint is not None:
             print("#############################")
-            print("loading model from checkpoint")
+            print("loading model from checkpoint for continue training..")
             print("#############################")
             try:
                 checkpoint = tf.train.latest_checkpoint(a.checkpoint)
                 saver.restore(sess, checkpoint)
             except:
-                print("loading was unsuccessful")
+                print("loading was unsuccessful-it will train from scrtach..")
                 print("#############################")
 
         max_steps = 2**32
@@ -1018,10 +1018,11 @@ def main():
 
 
 def CombineImages(ImageListNames, task_No, input_dir_all):
+    print('combining images ...')
     try:
         os.mkdir(write_to_dir)
     except:
-        print('destination folder is already exist')
+        print('destination folder is already exist-it will be replaced')
         shutil.rmtree(write_to_dir)
         os.mkdir(write_to_dir)
 
