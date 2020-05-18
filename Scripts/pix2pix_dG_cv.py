@@ -55,6 +55,7 @@ parser.add_argument("--lr", type=float, default=0.0002, help="initial learning r
 parser.add_argument("--beta1", type=float, default=0.5, help="momentum term of adam")
 parser.add_argument("--l1_weight", type=float, default=100.0, help="weight on L1 term for generator gradient")
 parser.add_argument("--gan_weight", type=float, default=1.0, help="weight on GAN term for generator gradient")
+parser.add_argument("--kernelsize", type=int, default=4, help="kernelsize")
 
 # export options
 parser.add_argument("--output_filetype", default="png", choices=["png", "jpeg"])
@@ -117,16 +118,16 @@ def gen_conv(batch_input, out_channels):
     # [batch, in_height, in_width, in_channels] => [batch, out_height, out_width, out_channels]
     initializer = tf.random_normal_initializer(0, 0.02)
     if a.separable_conv:
-        return tf.layers.separable_conv2d(batch_input, out_channels, kernel_size=4, strides=(2, 2), padding="same", depthwise_initializer=initializer, pointwise_initializer=initializer)
+        return tf.layers.separable_conv2d(batch_input, out_channels, kernel_size=a.kernelsize, strides=(2, 2), padding="same", depthwise_initializer=initializer, pointwise_initializer=initializer)
     else:
-        return tf.layers.conv2d(batch_input, out_channels, kernel_size=4, strides=(2, 2), padding="same", kernel_initializer=initializer)
+        return tf.layers.conv2d(batch_input, out_channels, kernel_size=a.kernelsize, strides=(2, 2), padding="same", kernel_initializer=initializer)
 
 # Moha : --------------------------------------
 def gen_conv_dilate(batch_input, out_channels):
     # [batch, in_height, in_width, in_channels] => [batch, out_height, out_width, out_channels]
     initializer = tf.random_normal_initializer(0, 0.02)
     dilate_rate=2
-    output= tf.layers.conv2d(batch_input, out_channels, kernel_size=4, dilation_rate=(dilate_rate, dilate_rate), padding="same", kernel_initializer=initializer)
+    output= tf.layers.conv2d(batch_input, out_channels, kernel_size=a.kernelsize, dilation_rate=(dilate_rate, dilate_rate), padding="same", kernel_initializer=initializer)
     return tf.layers.max_pooling2d(inputs=output, pool_size=[2,2], strides=(2,2),padding='valid',data_format='channels_last',name=None )
 #end  Moha ---------------------------------------
 
@@ -137,9 +138,9 @@ def gen_deconv(batch_input, out_channels):
     if a.separable_conv:
         _b, h, w, _c = batch_input.shape
         resized_input = tf.image.resize_images(batch_input, [h * 2, w * 2], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-        return tf.layers.separable_conv2d(resized_input, out_channels, kernel_size=4, strides=(1, 1), padding="same", depthwise_initializer=initializer, pointwise_initializer=initializer)
+        return tf.layers.separable_conv2d(resized_input, out_channels, kernel_size=a.kernelsize, strides=(1, 1), padding="same", depthwise_initializer=initializer, pointwise_initializer=initializer)
     else:
-        return tf.layers.conv2d_transpose(batch_input, out_channels, kernel_size=4, strides=(2, 2), padding="same", kernel_initializer=initializer)
+        return tf.layers.conv2d_transpose(batch_input, out_channels, kernel_size=a.kernelsize, strides=(2, 2), padding="same", kernel_initializer=initializer)
 
 
 def lrelu(x, a):
@@ -766,7 +767,7 @@ def main():
 
         if a.checkpoint is not None:
             print("#############################")
-            print("loading model from checkpoint for continue training ...")
+            print("loading model from checkpoint for continue training or testing phase ...")
             print("#############################")
             try:
                 checkpoint = tf.train.latest_checkpoint(a.checkpoint)

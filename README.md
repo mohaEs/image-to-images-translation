@@ -37,18 +37,20 @@ All the scripts can be called by the arguments: <br>
 --desired_l1_loss &nbsp;  &nbsp; desired l1 loss for early stopping <br>
 --max_epochs  &nbsp; &nbsp;  maximum epochs  <br>
 --batch_size  &nbsp; &nbsp; batch size <br>
---seed   &nbsp; &nbsp;   1 <br>
+--seed   &nbsp; &nbsp;   any number e.g. 1 <br>
 --l1_weight  &nbsp; &nbsp;  weight for l1 part in loss function <br>
+--ngf  &nbsp; &nbsp;  number of filters for the first layer, default 64 <br>
+--lr   &nbsp; &nbsp;  learning rate, default 0.0002 <br>
+--kernelsize   &nbsp; &nbsp;  size of the kernel for filters of the conv layers in generator, default 4 <br>
+
 
 e.g. 
 for training with cross validation, single task, task 1, ... : <br>
-> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10  
+> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --kernelsize 4 --seed 1 --l1_weight 10  
 
 and for multi-task: <br>
-> python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --kernelsize 4 --seed 1 --l1_weight 10 
 
-
-The codes are tested by tensorflow-gpu 1.12.0 and python 3.6.6
 
 ## image size:
 As stated above, the defualt image size is 512x512. if you want to change it, just change the following lines in each script:
@@ -88,25 +90,25 @@ The names of image files which will be used for training/testing are deteremined
 
 ![Alt text](./readme_2.jpg?raw=true "Title") <br>
 
-## Executing
+## Executing examples:
 
-Do not forget tp set the values of batch size and epochs appropriatley.<br>
-With following command shells, the models  and results will be saved in output_dir_all folder.<br>
+Do not forget to set the values of batch size, epochs, kernelsize and etc. appropriately.<br>
+With following command shells, traing and testing will be executed automatically based on the sets in cv_info_dir and therefore the models and results will be saved in output_dir_all folder.<br>
 Notice that, if the folder contains previous saved models, the code will continue training. 
-
+We can add more input arguments such as --ngf if is required.
 
 ### Single task - task 1:
-> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --kernelsize 4 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### Single task - task 2:
-> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_0orig_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --kernelsize 4 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### Single task with dilation - task 1:
-> python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 1 --desired_l1_loss 0.05 --kernelsize 4 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### Single task with dilation- task 2:
-> python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_dG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 2 --desired_l1_loss 0.05 --kernelsize 4 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### multi task:
-> python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_MT_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --kernelsize 4 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 ### multi task with dilation:
-> python ./Scripts/pix2pix_MTdG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
+> python ./Scripts/pix2pix_MTdG_cv.py  --output_dir_all ./Outputs  --input_dir_all ./ImageData --cv_info_dir ./CV_info --task_No 3 --desired_l1_loss 0.05 --kernelsize 4 --max_epochs 2000 --batch_size 2 --seed 1 --l1_weight 10 
 
 
 ## Training Note: Loss curves
