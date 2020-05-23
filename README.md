@@ -119,4 +119,4 @@ for example, following image shows a training case, in which generator successfu
 While the following case study shows that the discriminator is the winner around 200th epoch. Also, the problems was so complicated than previous case study in which the system converged easily. Here there are many struggles even before epoch 200:<br>
 ![Alt text](./Scripts/Misconverged.png?raw=true "Title") <br>
 
-It means, we should change the hyperparameters, e.g. setting the max_epochs to 180, desired l1 loss, l1 wieght, etc.  
+It means, if we are sure about hyperparamteres (i.e. they work for other folds) we can retrain the fold, sometimes this approach work. Otherwise, we should change the hyperparameters, e.g. setting the max_epochs to 180, desired l1 loss, l1 wieght, etc.  
