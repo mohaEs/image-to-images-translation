@@ -887,19 +887,24 @@ import sys
 #a.max_epochs=2000
 #a.desired_l1_loss=0.05
 #a.batch_size=10
-#a.seed=1
+#a.seed=35555
+#a.lr=0.0002
+#a.ngf=64
+#a.kernelsize=3
+
 
 
 CvDirs = glob.glob(os.path.join(a.cv_info_dir, "*"))
+SetNames = [os.path.basename(x) for x in CvDirs]
 
-for cv in range(1,len(CvDirs)+1): # #################
+for cv in range(0,len(CvDirs)): # #################
 
     
     print('#####################')
-    print('### cv:',str(cv),'########')
+    print('### cv:',SetNames[cv],'########')
     print('#####################')
-    trainfile=a.cv_info_dir+'/set_'+str(cv)+'/train.txt'
-    testfile=a.cv_info_dir+'/set_'+str(cv)+'/test.txt'
+    trainfile=a.cv_info_dir+'/'+SetNames[cv]+'/train.txt'
+    testfile=a.cv_info_dir+'/'+SetNames[cv]+'/test.txt'
     
     
     text_file = open(trainfile)
@@ -911,12 +916,12 @@ for cv in range(1,len(CvDirs)+1): # #################
     
     a.mode='train'
     print('############',a.mode)
-    a.checkpoint=a.output_dir_all+'/pix2pix_orig_ST/Models_t'+a.task_No+'/set_'+str(cv)
+    a.checkpoint=a.output_dir_all+'/pix2pix_orig_ST/Models_t'+a.task_No+'/'+SetNames[cv]
     tf.reset_default_graph()
     write_to_dir = a.input_dir_all + "/Temp_CombinedImages/"
     CombineImages(list_train, int(a.task_No), a.input_dir_all)
     a.input_dir=write_to_dir
-    a.output_dir=a.output_dir_all+'/pix2pix_orig_ST/Models_t'+a.task_No+'/set_'+str(cv)
+    a.output_dir=a.output_dir_all+'/pix2pix_orig_ST/Models_t'+a.task_No+'/'+SetNames[cv]
     main()
     
     a.mode='test'
@@ -924,9 +929,9 @@ for cv in range(1,len(CvDirs)+1): # #################
     tf.reset_default_graph()
     shutil.rmtree(write_to_dir)
     CombineImages(list_test, int(a.task_No), a.input_dir_all)
-    a.checkpoint=a.output_dir_all+'/pix2pix_orig_ST/Models_t'+a.task_No+'/set_'+str(cv)
+    a.checkpoint=a.output_dir_all+'/pix2pix_orig_ST/Models_t'+a.task_No+'/'+SetNames[cv]
     a.input_dir=write_to_dir
-    a.output_dir=a.output_dir_all+'/pix2pix_orig_ST/Results_t'+a.task_No+'/set_'+str(cv)
+    a.output_dir=a.output_dir_all+'/pix2pix_orig_ST/Results_t'+a.task_No+'/'+SetNames[cv]
     try:
         shutil.rmtree(a.output_dir)
     except:
