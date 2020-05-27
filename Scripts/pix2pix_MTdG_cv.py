@@ -27,14 +27,15 @@ parser.add_argument("--input_dir_all", help="path to folder containing images")
 parser.add_argument("--output_dir_all", help="where to put output files")
 parser.add_argument("--cv_info_dir", default=None, help="directory contains cross validation set ups")
 parser.add_argument("--task_No", default=None, help="number of task, 1 means t1, 2 means t2, 3 means multi")
-parser.add_argument("--desired_l1_loss", default=0.005, help="desired l1 loss for early stop the training < max_epochs ")
+parser.add_argument("--desired_l1_loss", default=0.005, help="stop parameter: desired l1 loss for early stop the training < max_epochs ")
+parser.add_argument("--patience_epochs", default=100, help="stop parameter: number of epochs in which the loss of generator increased while the loss of discriminator decreased.")
 
 
 #parser.add_argument("--checkpoint", help="the dir contains the last trained model. for continuing training.")
 
 parser.add_argument("--seed", type=int)
 parser.add_argument("--max_steps", type=int, help="number of training steps (0 to disable)")
-parser.add_argument("--max_epochs", type=int, help="number of training epochs")
+parser.add_argument("--max_epochs", type=int, help="stop parameter: number of training epochs")
 parser.add_argument("--summary_freq", type=int, default=100, help="update summaries every summary_freq steps")
 parser.add_argument("--progress_freq", type=int, default=50, help="display progress every progress_freq steps")
 parser.add_argument("--trace_freq", type=int, default=0, help="trace execution every trace_freq steps")
@@ -944,6 +945,10 @@ def main():
         else:
             # training
             start = time.time()
+            
+            discrim_loss_pre=10000
+            gan_loss_pre=10000
+            patience_counter=0
 
             for step in range(max_steps):
                 def should(freq):
@@ -1018,6 +1023,27 @@ def main():
                     print("gen_loss_jaccard -----------", results["gen_loss_jaccard"])
                     
                     print("gen_loss_Tversky -----------", results["gen_loss_Tversky"])
+                    
+                    
+                    if discrim_loss_pre >= results["discrim_loss"]:
+                        if gan_loss_pre <=results["gen_loss_GAN"]:
+                            patience_counter=patience_counter+1
+                        else:
+                            patience_counter=0
+                    else:
+                        patience_counter=0        
+                                                       
+                    
+                    discrim_loss_pre=results["discrim_loss"]
+                    gan_loss_pre=results["gen_loss_GAN"]
+                    
+                    if patience_counter>=float(a.patience_epochs):
+                        print("###################")                              
+                        print("early stop, disc is winning")
+                        print("progress  epoch %d  step %d  image/sec %0.1f  remaining %dm" % (train_epoch, train_step, rate, remaining / 60))
+                        print("saving model")
+                        saver.save(sess, os.path.join(a.output_dir, "model"), global_step=sv.global_step)
+                        break
                     
                     
                     if results["gen_loss_L1"] < float(a.desired_l1_loss):
