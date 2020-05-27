@@ -42,7 +42,7 @@ All the scripts can be called by the arguments: <br>
 --ngf  &nbsp; &nbsp;  number of filters for the first layer, default 64 <br>
 --lr   &nbsp; &nbsp;  learning rate, default 0.0002 <br>
 --kernelsize   &nbsp; &nbsp;  size of the kernel for filters of the conv layers in generator, default 4 <br>
-
+--patience_epochs &nbsp; &nbsp;  number of patience epochs in which discriminator loss is decreasing while generator loss is increasing (i.e. discriminator starts to win), default 100 <br> 
 
 e.g. 
 for training with cross validation, single task, task 1, ... : <br>
@@ -119,4 +119,6 @@ for example, following image shows a training case, in which generator successfu
 While the following case study shows that the discriminator is the winner around 200th epoch. Also, the problems was so complicated than previous case study in which the system converged easily. Here there are many struggles even before epoch 200:<br>
 ![Alt text](./Scripts/Misconverged.png?raw=true "Title") <br>
 
-It means, if we are sure about hyperparamteres (i.e. they work for other folds) we can retrain the fold, sometimes this approach work. Otherwise, we should change the hyperparameters, e.g. setting the max_epochs to 180, desired l1 loss, l1 wieght, etc.  
+It means, if we are sure about hyperparamteres (i.e. they work for other folds) we can retrain the fold, sometimes this approach work. Otherwise, we should change the hyperparameters, e.g. setting the max_epochs to 180, desired l1 loss, l1 wieght, etc. 
+
+You can also, control the training and making the early stop with pointing the --patience_epochs argument. for example,for a --patience_epochs 5, means if we have 5 sequential epochs in which discriminator is going to be better while generator is going to be worse, the train will stop, save the model and test.  
