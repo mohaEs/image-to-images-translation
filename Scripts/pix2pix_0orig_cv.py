@@ -53,7 +53,7 @@ parser.add_argument("--lr", type=float, default=0.0002, help="initial learning r
 parser.add_argument("--beta1", type=float, default=0.5, help="momentum term of adam")
 parser.add_argument("--l1_weight", type=float, default=100.0, help="weight on L1 term for generator gradient")
 parser.add_argument("--gan_weight", type=float, default=1.0, help="weight on GAN term for generator gradient")
-parser.add_argument("--kernelsize", type=int, default=4, help="kernelsize for the conv layers of generator")
+parser.add_argument("--kernelsize", type=int, default=4, help="kernelsize for the conv layers")
 # export options
 parser.add_argument("--output_filetype", default="png", choices=["png", "jpeg"])
 
