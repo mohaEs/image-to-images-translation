@@ -859,10 +859,7 @@ def main():
                     if discrim_loss_pre >= results["discrim_loss"]:
                         if gan_loss_pre <=results["gen_loss_GAN"]:
                             patience_counter=patience_counter+1
-                        else:
-                            patience_counter=0
-                    else:
-                        patience_counter=0        
+      
                                                        
                     
                     discrim_loss_pre=results["discrim_loss"]
