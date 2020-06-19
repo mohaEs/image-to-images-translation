@@ -122,3 +122,12 @@ While the following case study shows that the discriminator is the winner around
 It means, if we are sure about hyperparamteres (i.e. they work for other folds) we can retrain the fold, sometimes this approach work. Otherwise, we should change the hyperparameters, e.g. setting the max_epochs to 180, desired l1 loss, l1 wieght, etc. 
 
 You can also, control the training and making the **early stop** with pointing the **--patience_epochs** argument. for example,for a --patience_epochs 5, means if we have 5 sequential epochs in which discriminator is going to be better while generator is going to be worse, the train will stop, save the model and test.  
+
+
+## U-net of pix2pix (generator)
+ 	
+The generator of the pix2pix is a U-net style network. If we want to just evaluate the network without adversarial fashion, we can use file Pr_unet_p2pGenerator.py. This file contains the only generator of pix2pix (u-net). Settings and arguments are same as above. 
+
+Notice that, the u-net mentioned in paper TMI is not this network. That was the original u-net.
+
+Similarly for multitask u-net, use Pr_Multi_unet_p2pGenerator.py. 
