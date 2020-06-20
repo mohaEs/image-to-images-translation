@@ -126,8 +126,9 @@ You can also, control the training and making the **early stop** with pointing t
 
 ## U-net of pix2pix (generator)
  	
-The generator of the pix2pix is a U-net style network. If we want to just evaluate the network without adversarial fashion, we can use file Pr_unet_p2pGenerator.py. This file contains the only generator of pix2pix (u-net). Settings and arguments are same as above. 
+The generator of the pix2pix is a U-net style network. If we want to just evaluate the network without adversarial fashion, we can use file Pr_unet_p2pGenerator.py. This file contains the only generator of pix2pix (u-net). Settings and arguments are same as above. Notice that, some arguements are not useful anymore (they were for GAN). Example of arguments are available before definition of the CreateModel(). 
 
 Notice that, the u-net mentioned in paper TMI is not this network. That was the original u-net.
 
 Similarly for multitask u-net, use Pr_Multi_unet_p2pGenerator.py. 
+
