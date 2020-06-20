@@ -117,8 +117,8 @@ parser.add_argument("--scale_size", type=int, default=286, help="scale images to
 # export options
 a = parser.parse_args()
 
-#a.scale_size=512
-#CROP_SIZE = 512
+a.scale_size=512
+CROP_SIZE = 512
 #
 #
 #a.batch_size=25
