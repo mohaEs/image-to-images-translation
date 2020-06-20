@@ -112,7 +112,7 @@ parser.add_argument("--ngf", type=int, default=64, help="number of generator fil
 parser.add_argument("--kernelsize", type=int, default=4, help="kernelsize for the conv layers of generator")
 parser.add_argument("--batch_size", type=int, default=1, help="number of images in batch")
 parser.add_argument("--scale_size", type=int, default=286, help="scale images to this size before cropping to 256x256")
-parser.add_argument("--patience_epochs", default=10, help="stop parameter: number of epochs in which the val_loss increased")
+parser.add_argument("--patience_epochs", default=100, help="stop parameter: number of epochs in which the val_loss increased")
 
 
 # export options
@@ -131,7 +131,7 @@ CROP_SIZE = 512
 #a.seed=35555
 #a.task_No='3'
 #a.desired_l1_loss=0.01
-#a.patience_epochs=10
+#a.patience_epochs=100
 #
 #a.input_dir_all='./4_save/FLAIR_to_T1_Seg_512/ImageData'
 #a.output_dir_all='./4_save/FLAIR_to_T1_Seg_512/Outputs_unet_p2p'
