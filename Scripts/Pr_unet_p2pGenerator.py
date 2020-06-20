@@ -305,7 +305,7 @@ def main():
         UsedOptimizer=optimizers.Adam(lr=a.lr, beta_1=a.beta1)
         MODEL_unet.compile(loss=custom_loss, optimizer=UsedOptimizer)        
         History=MODEL_unet.fit(X_train, Y_train,
-                batch_size=a.batch_size, shuffle=True, validation_split=0.02,
+                batch_size=a.batch_size, shuffle=True, validation_split=0.05,
             epochs=a.max_epochs,
                 verbose=1, callbacks=[MyCallbacks_loss, MyCallbacks_loss_val])
         
