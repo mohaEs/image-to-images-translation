@@ -119,21 +119,21 @@ a = parser.parse_args()
 
 a.scale_size=512
 CROP_SIZE = 512
-#
-#
-#a.batch_size=25
-#a.max_epochs=500 #60
+
+
+#a.batch_size=2
+#a.max_epochs=2 #60
 #a.lr=0.0002
 #a.beta1=0.5
-#a.ngf=100
+#a.ngf=64
 #a.kernelsize=3
 #a.seed=35555
-#a.task_No='1'
+#a.task_No='3'
 #a.desired_l1_loss=0.01
 #
-#a.input_dir_all='./4_save/T1_to_FLAIR_T1Inv_512/ImageData'
-#a.output_dir_all='./4_save/T1_to_FLAIR_T1Inv_512/Outputs_unet_p2p'
-#a.cv_info_dir='./4_save/T1_to_FLAIR_T1Inv_512/CV_Info_LSliceOut'
+#a.input_dir_all='./4_save/FLAIR_to_T1_Seg_512/ImageData'
+#a.output_dir_all='./4_save/FLAIR_to_T1_Seg_512/Outputs_unet_p2p'
+#a.cv_info_dir='./4_save/FLAIR_to_T1_Seg_512/CV_Info_LSliceOut'
 
 print(a)
 
@@ -218,7 +218,7 @@ def CreateModel():
     
     d_1=tensorflow.keras.layers.concatenate(inputs=[d_2, e_1], axis=3)
     d_1=tensorflow.keras.layers.Activation('relu')(d_1)
-    d_1=tensorflow.keras.layers.Conv2DTranspose(3, kernel_size=kernelSize, strides=(2, 2), dilation_rate=(1, 1), padding='same',)(d_1)        
+    d_1=tensorflow.keras.layers.Conv2DTranspose(6, kernel_size=kernelSize, strides=(2, 2), dilation_rate=(1, 1), padding='same',)(d_1)        
     OUT=tensorflow.keras.layers.Activation('tanh', name='last_layer_of_decoder')(d_1)
             
     model_unet=Model(inputs=InputLayer, outputs=OUT)
@@ -250,7 +250,9 @@ def main():
     
         print('model is loaded ')
 
-        Y_pred=MODEL_unet.predict(X_test)  
+        Y_pred=MODEL_unet.predict(X_test)
+        Y_pred_1=Y_pred[:,:,:,:3]
+        Y_pred_2=Y_pred[:,:,:,3:]
         
         for i in range(len(list_test)):
             
@@ -260,9 +262,11 @@ def main():
             except:
                 no=0
                         
-            io.imsave(a.output_dir+'/'+filename_[:-4]+'-outputs.png', 255*Y_pred[i,:,:,:])
+            io.imsave(a.output_dir+'/'+filename_[:-4]+'-outputs_1.png', 255*Y_pred_1[i,:,:,:])
+            io.imsave(a.output_dir+'/'+filename_[:-4]+'-outputs_2.png', 255*Y_pred_2[i,:,:,:])
             io.imsave(a.output_dir+'/'+filename_[:-4]+'-inputs.png', 255*X_test[i,:,:,:])
-            io.imsave(a.output_dir+'/'+filename_[:-4]+'-targets.png', 255*Y_test[i,:,:,:])
+            io.imsave(a.output_dir+'/'+filename_[:-4]+'-targets_1.png', 255*Y_test_1[i,:,:,:])
+            io.imsave(a.output_dir+'/'+filename_[:-4]+'-targets_2.png', 255*Y_test_2[i,:,:,:])
         
       
             
@@ -291,7 +295,7 @@ def main():
         
         
         #### compile and train the model
-        MyCallbacks = callback_4_StopByLossValue(monitor='loss', value=a.desired_l1_loss, verbose=1)    
+        MyCallbacks = callback_4_StopByLossValue(monitor='loss', value=a.desired_l1_loss, verbose=1)   
 
         UsedOptimizer=optimizers.Adam(lr=a.lr, beta_1=a.beta1)
         MODEL_unet.compile(loss=custom_loss, optimizer=UsedOptimizer)        
@@ -350,12 +354,13 @@ for cv in range(0,len(CvDirs)): # #################
     print('############',a.mode)
     tf.reset_default_graph()
     
-    a.output_dir=a.output_dir_all+'/unet_ST/Models_t'+a.task_No+'/'+SetNames[cv]    
+    a.output_dir=a.output_dir_all+'/unet_MT/Models_t'+a.task_No+'/'+SetNames[cv]    
     if not os.path.exists(a.output_dir):
         os.makedirs(a.output_dir)
     
     Images_input=np.zeros((len(list_train),a.scale_size,a.scale_size,3),dtype=np.uint8)    
-    Images_target=np.zeros((len(list_train),a.scale_size,a.scale_size,3),dtype=np.uint8)    
+    Images_target_1=np.zeros((len(list_train),a.scale_size,a.scale_size,3),dtype=np.uint8)    
+    Images_target_2=np.zeros((len(list_train),a.scale_size,a.scale_size,3),dtype=np.uint8)    
     
     for i in range(len(list_train)):
         filename_in=list_train[i]
@@ -366,8 +371,12 @@ for cv in range(0,len(CvDirs)): # #################
         
         IMg=io.imread(a.input_dir_all+'/Inputs/'+filename_in)
         Images_input[i,:,:,:]=IMg
-        IMg=io.imread(a.input_dir_all+'/Targets_'+a.task_No+'/'+filename_in)
-        Images_target[i,:,:,:]=IMg
+        IMg=io.imread(a.input_dir_all+'/Targets_1/'+filename_in)
+        Images_target_1[i,:,:,:]=IMg
+        IMg=io.imread(a.input_dir_all+'/Targets_2/'+filename_in)
+        Images_target_2[i,:,:,:]=IMg
+        
+        
 #        plt.figure()
 #        plt.imshow(IMg)
             
@@ -376,9 +385,16 @@ for cv in range(0,len(CvDirs)): # #################
     del Images_input
     gc.collect()    
     
-    Y_train = PreProcess(Images_target) 
-    del Images_target
+    Y_train_1 = PreProcess(Images_target_1) 
+    del Images_target_1
     gc.collect()    
+    
+    Y_train_2 = PreProcess(Images_target_2) 
+    del Images_target_2
+    gc.collect()    
+    
+    Y_train=np.concatenate((Y_train_1, Y_train_2), axis=3)
+    
     
 #        plt.imshow(Y_train[0,:,:,:])
 #       plt.imshow(X_train[0,:,:,:])
@@ -398,12 +414,13 @@ for cv in range(0,len(CvDirs)): # #################
     tf.reset_default_graph()
     
     
-    a.output_dir=a.output_dir_all+'/unet_ST/Results_t'+a.task_No+'/'+SetNames[cv]    
+    a.output_dir=a.output_dir_all+'/unet_MT/Results_t'+a.task_No+'/'+SetNames[cv]    
     if not os.path.exists(a.output_dir):
         os.makedirs(a.output_dir)
     
     Images_input=np.zeros((len(list_test),a.scale_size,a.scale_size,3),dtype=np.uint8)    
-    Images_target=np.zeros((len(list_test),a.scale_size,a.scale_size,3),dtype=np.uint8)    
+    Images_target_1=np.zeros((len(list_test),a.scale_size,a.scale_size,3),dtype=np.uint8)    
+    Images_target_2=np.zeros((len(list_test),a.scale_size,a.scale_size,3),dtype=np.uint8)    
     
     for i in range(len(list_test)):
         filename_in=list_train[i]
@@ -414,8 +431,10 @@ for cv in range(0,len(CvDirs)): # #################
         
         IMg=io.imread(a.input_dir_all+'/Inputs/'+filename_in)
         Images_input[i,:,:,:]=IMg
-        IMg=io.imread(a.input_dir_all+'/Targets_'+a.task_No+'/'+filename_in)
-        Images_target[i,:,:,:]=IMg
+        IMg=io.imread(a.input_dir_all+'/Targets_1/'+filename_in)
+        Images_target_1[i,:,:,:]=IMg
+        IMg=io.imread(a.input_dir_all+'/Targets_2/'+filename_in)
+        Images_target_2[i,:,:,:]=IMg
         
         
 #        plt.figure()
@@ -426,10 +445,15 @@ for cv in range(0,len(CvDirs)): # #################
     del Images_input
     gc.collect()    
     
-    Y_test = PreProcess(Images_target) 
-    del Images_target
+    Y_test_1 = PreProcess(Images_target_1) 
+    del Images_target_1
     gc.collect()                   
-    main()
+    
+    Y_test_2 = PreProcess(Images_target_2) 
+    del Images_target_2
+    gc.collect()                   
+       
+    main()    
     K.clear_session()
 
     
