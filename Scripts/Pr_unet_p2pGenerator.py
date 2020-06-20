@@ -117,23 +117,23 @@ parser.add_argument("--scale_size", type=int, default=286, help="scale images to
 # export options
 a = parser.parse_args()
 
-a.scale_size=512
-CROP_SIZE = 512
-
-
-a.batch_size=25
-a.max_epochs=500 #60
-a.lr=0.0002
-a.beta1=0.5
-a.ngf=100
-a.kernelsize=3
-a.seed=35555
-a.task_No='1'
-a.desired_l1_loss=0.01
-
-a.input_dir_all='./4_save/T1_to_FLAIR_T1Inv_512/ImageData'
-a.output_dir_all='./4_save/T1_to_FLAIR_T1Inv_512/Outputs_unet_p2p'
-a.cv_info_dir='./4_save/T1_to_FLAIR_T1Inv_512/CV_Info_LSliceOut'
+#a.scale_size=512
+#CROP_SIZE = 512
+#
+#
+#a.batch_size=25
+#a.max_epochs=500 #60
+#a.lr=0.0002
+#a.beta1=0.5
+#a.ngf=100
+#a.kernelsize=3
+#a.seed=35555
+#a.task_No='1'
+#a.desired_l1_loss=0.01
+#
+#a.input_dir_all='./4_save/T1_to_FLAIR_T1Inv_512/ImageData'
+#a.output_dir_all='./4_save/T1_to_FLAIR_T1Inv_512/Outputs_unet_p2p'
+#a.cv_info_dir='./4_save/T1_to_FLAIR_T1Inv_512/CV_Info_LSliceOut'
 
 print(a)
 
