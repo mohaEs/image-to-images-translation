@@ -112,6 +112,7 @@ parser.add_argument("--ngf", type=int, default=64, help="number of generator fil
 parser.add_argument("--kernelsize", type=int, default=4, help="kernelsize for the conv layers of generator")
 parser.add_argument("--batch_size", type=int, default=1, help="number of images in batch")
 parser.add_argument("--scale_size", type=int, default=286, help="scale images to this size before cropping to 256x256")
+parser.add_argument("--patience_epochs", default=10, help="stop parameter: number of epochs in which the val_loss increased")
 
 
 # export options
@@ -121,8 +122,8 @@ a.scale_size=512
 CROP_SIZE = 512
 
 
-#a.batch_size=2
-#a.max_epochs=2 #60
+#a.batch_size=25
+#a.max_epochs=500 #60
 #a.lr=0.0002
 #a.beta1=0.5
 #a.ngf=64
@@ -130,6 +131,7 @@ CROP_SIZE = 512
 #a.seed=35555
 #a.task_No='3'
 #a.desired_l1_loss=0.01
+#a.patience_epochs=10
 #
 #a.input_dir_all='./4_save/FLAIR_to_T1_Seg_512/ImageData'
 #a.output_dir_all='./4_save/FLAIR_to_T1_Seg_512/Outputs_unet_p2p'
@@ -295,14 +297,17 @@ def main():
         
         
         #### compile and train the model
-        MyCallbacks = callback_4_StopByLossValue(monitor='loss', value=a.desired_l1_loss, verbose=1)   
-
+        MyCallbacks_loss = callback_4_StopByLossValue(monitor='loss', value=a.desired_l1_loss, verbose=1)  
+        MyCallbacks_loss_val = tf.keras.callbacks.EarlyStopping(
+    monitor='val_loss', min_delta=0, patience=a.patience_epochs, verbose=0, mode='auto',
+    baseline=None, restore_best_weights=False)
+        
         UsedOptimizer=optimizers.Adam(lr=a.lr, beta_1=a.beta1)
         MODEL_unet.compile(loss=custom_loss, optimizer=UsedOptimizer)        
         History=MODEL_unet.fit(X_train, Y_train,
                 batch_size=a.batch_size, shuffle=True, validation_split=0.02,
             epochs=a.max_epochs,
-                verbose=1, callbacks=[MyCallbacks])
+                verbose=1, callbacks=[MyCallbacks_loss, MyCallbacks_loss_val])
         
         
         plt.plot(History.history['loss'])
