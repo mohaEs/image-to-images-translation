@@ -13,8 +13,13 @@ https://youtu.be/J8Uth26_7rQ <br>
 which you can find more information:
 https://arxiv.org/abs/1906.10089
 
-If you found this codes usefull, please cite the following paper:
+If you found this codes usefull, please cite the following paper published by IEEE Transactions on Medical Imaging, entitled " Image-to-Images Translation for Multi-Task Organ Segmentation and Bone Suppression in Chest X-Ray Radiography":
 https://doi.org/10.1109/TMI.2020.2974159
+
+
+This code is also used for following paper at IEEE ISBI conference, entitled "Joint Low Dose CT Denoising And Kidney Segmentation":
+https://doi.org/10.1109/ISBIWorkshops50223.2020.9153392
+
 
 The codes are tested by python 3.5, 3.6 and tensorflow 1.12, 1.13 and 1.14. 
 If the training stopped with no error or message,you need gpu with more memory.
