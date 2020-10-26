@@ -135,6 +135,7 @@ CROP_SIZE = 512
 #
 #
 #
+
 #a.input_dir_all='./4_save/FLAIR_to_T1_Seg_512/ImageData'
 #a.output_dir_all='./4_save/FLAIR_to_T1_Seg_512/Outputs_unet_p2p'
 #a.cv_info_dir='./4_save/FLAIR_to_T1_Seg_512/CV_Info_LSliceOut'
