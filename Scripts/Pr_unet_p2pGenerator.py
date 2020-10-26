@@ -416,7 +416,7 @@ for cv in range(0,len(CvDirs)): # #################
     Images_target=np.zeros((len(list_test),a.scale_size,a.scale_size,3),dtype=np.uint8)    
     
     for i in range(len(list_test)):
-        filename_in=list_train[i]
+        filename_in=list_test[i]
         try:
             filename_in=filename_in.replace('\n','')
         except:
