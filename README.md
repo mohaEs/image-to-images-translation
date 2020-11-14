@@ -10,7 +10,7 @@ The codes are based on codes of pix2pix shared by https://github.com/affinelayer
 This concept and code is used in the following research:<br>
 https://youtu.be/J8Uth26_7rQ <br>
 
-### chest x-ray image analysis (organ segmentation and bone suppression)
+### 1- chest x-ray image analysis (organ segmentation and bone suppression)
 which you can find more information:
 https://arxiv.org/abs/1906.10089
 
@@ -18,11 +18,11 @@ If you found this codes usefull, please cite the following paper published by IE
 https://doi.org/10.1109/TMI.2020.2974159
 
 
-### low dose CT image analysis (kidney segmentation and image enhancement)
+### 2- low dose CT image analysis (kidney segmentation and image enhancement)
 This code is also used for following paper at IEEE ISBI conference, entitled "Joint Low Dose CT Denoising And Kidney Segmentation":
 https://doi.org/10.1109/ISBIWorkshops50223.2020.9153392
 
-### MRI neuroimaing analysis (tisse segmentation, cross-modality conversion and bias correction)
+### 3- MRI neuroimaing analysis (tisse segmentation, cross-modality conversion and bias correction)
 
 
 hyperparameters:
