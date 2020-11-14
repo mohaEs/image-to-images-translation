@@ -7,10 +7,11 @@ image-to-images translation is the extended version of image-to-image translatio
 The codes are based on codes of pix2pix shared by https://github.com/affinelayer/pix2pix-tensorflow and is modified to address our desired goals.
 
 ## papers
-This concept and code is used in the following research:<br>
-https://youtu.be/J8Uth26_7rQ <br>
+This concept and code is used in the following researches:<br>
+
 
 ### 1- chest x-ray image analysis (organ segmentation and bone suppression)
+https://youtu.be/J8Uth26_7rQ <br>
 which you can find more information:
 https://arxiv.org/abs/1906.10089
 
