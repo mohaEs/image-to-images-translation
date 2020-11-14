@@ -17,18 +17,48 @@ https://arxiv.org/abs/1906.10089
 If you found this codes usefull, please cite the following paper published by IEEE Transactions on Medical Imaging, entitled " Image-to-Images Translation for Multi-Task Organ Segmentation and Bone Suppression in Chest X-Ray Radiography":
 https://doi.org/10.1109/TMI.2020.2974159
 
+Main hyperparameters:
+batch_size = 20 
+beta1 = 0.5
+gan_weight = 1.0 
+l1_weight = 10
+lr = 0.0002
+ndf = 64
+ngf = 64
+scale_size = 512
+
 
 ### 2- low dose CT image analysis (kidney segmentation and image enhancement)
 This code is also used for following paper at IEEE ISBI conference, entitled "Joint Low Dose CT Denoising And Kidney Segmentation":
 https://doi.org/10.1109/ISBIWorkshops50223.2020.9153392
 
+
+Main hyperparameters:
+batch_size = 20 
+beta1 = 0.5
+gan_weight = 1.0 
+l1_weight = 10
+lr = 0.0002
+ndf = 64
+ngf = 64
+scale_size = 512
+desired_l1_loss = 0.007
+
+
 ### 3- MRI neuroimaing analysis (tisse segmentation, cross-modality conversion and bias correction)
 
 
-hyperparameters:
-ngf=100
-kernel=3
-lr= 
+Main hyperparameters:
+ngf = 100
+ndf = 64
+kernelsize = 3
+batch_size = 20 
+beta1 = 0.5
+gan_weight = 1.0 
+l1_weight = 10
+lr = 0.0002
+scale_size = 512
+desired_l1_loss = 0.01
 
 
 ## Main scripts
