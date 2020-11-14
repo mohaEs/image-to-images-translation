@@ -6,10 +6,11 @@ image-to-images translation is the extended version of image-to-image translatio
 
 The codes are based on codes of pix2pix shared by https://github.com/affinelayer/pix2pix-tensorflow and is modified to address our desired goals.
 
+## papers
 This concept and code is used in the following research:<br>
 https://youtu.be/J8Uth26_7rQ <br>
 
-
+### chest x-ray image analysis (organ segmentation and bone suppression)
 which you can find more information:
 https://arxiv.org/abs/1906.10089
 
@@ -17,16 +18,25 @@ If you found this codes usefull, please cite the following paper published by IE
 https://doi.org/10.1109/TMI.2020.2974159
 
 
+### low dose CT image analysis (kidney segmentation and image enhancement)
 This code is also used for following paper at IEEE ISBI conference, entitled "Joint Low Dose CT Denoising And Kidney Segmentation":
 https://doi.org/10.1109/ISBIWorkshops50223.2020.9153392
 
+### MRI neuroimaing analysis (tisse segmentation, cross-modality conversion and bias correction)
 
+
+hyperparameters:
+ngf=100
+kernel=3
+lr= 
+
+
+## Main scripts
 The codes are tested by python 3.5, 3.6 and tensorflow 1.12, 1.13 and 1.14. 
 If the training stopped with no error or message,you need gpu with more memory.
 
 This is the version v2, which makes the cross validation automatically. The v1 is also available and located in the folder v1.
 
-## Main scripts
 Main scripts located in scripts folder are as follow (512x512 image size):
 
 - pix2pix_0orig_cv.py : original pix2pix 
