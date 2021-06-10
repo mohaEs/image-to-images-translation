@@ -48,6 +48,7 @@ desired_l1_loss = 0.007
 
 ### 3- MRI neuroimaing analysis (tisse segmentation, cross-modality conversion and bias correction)
 
+https://arxiv.org/abs/2105.14986
 
 Main hyperparameters:
 ngf = 100
